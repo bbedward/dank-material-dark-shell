@@ -31,6 +31,8 @@ Singleton {
     property bool showClipboard: true
     property bool showSystemResources: true
     property bool showSystemTray: true
+    // WorkspaceSwitcher index toggle
+    property bool showWorkspaceIndex: true
     // View mode preferences for launchers
     property string appLauncherViewMode: "list"
     property string spotlightLauncherViewMode: "list"
@@ -62,6 +64,7 @@ Singleton {
                 showClipboard = settings.showClipboard !== undefined ? settings.showClipboard : true;
                 showSystemResources = settings.showSystemResources !== undefined ? settings.showSystemResources : true;
                 showSystemTray = settings.showSystemTray !== undefined ? settings.showSystemTray : true;
+                showWorkspaceIndex = settings.showWorkspaceIndex !== undefined ? settings.showWorkspaceIndex : true;
                 appLauncherViewMode = settings.appLauncherViewMode !== undefined ? settings.appLauncherViewMode : "list";
                 spotlightLauncherViewMode = settings.spotlightLauncherViewMode !== undefined ? settings.spotlightLauncherViewMode : "list";
                 networkPreference = settings.networkPreference !== undefined ? settings.networkPreference : "auto";
@@ -96,11 +99,18 @@ Singleton {
             "showClipboard": showClipboard,
             "showSystemResources": showSystemResources,
             "showSystemTray": showSystemTray,
+            "showWorkspaceIndex": showWorkspaceIndex,
             "appLauncherViewMode": appLauncherViewMode,
             "spotlightLauncherViewMode": spotlightLauncherViewMode,
             "networkPreference": networkPreference
         }, null, 2));
         console.log("Saving settings - themeIndex:", themeIndex, "isDynamic:", themeIsDynamic, "lightMode:", isLightMode, "transparency:", topBarTransparency, "recentApps:", recentlyUsedApps.length);
+    }
+
+    function setShowWorkspaceIndex(enabled) {
+        console.log("Prefs setShowWorkspaceIndex called - showWorkspaceIndex:", enabled);
+        showWorkspaceIndex = enabled;
+        saveSettings();
     }
 
     function applyStoredTheme() {

@@ -84,7 +84,7 @@ Rectangle {
                 property int sequentialNumber: index + 1
 
                 width: isActive ? Theme.spacingXL + Theme.spacingM : Theme.spacingL + Theme.spacingXS
-                height: Theme.spacingM
+                height: Theme.spacingL
                 radius: height / 2
                 color: isActive ? Theme.primary : isHovered ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.5) : Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.3)
 
@@ -97,6 +97,16 @@ Rectangle {
                     onClicked: {
                         Quickshell.execDetached(["niri", "msg", "action", "focus-workspace", modelData.toString()]);
                     }
+                }
+
+                        // Only show index if enabled in preferences
+                        Text {
+                            visible: Prefs.showWorkspaceIndex
+                            anchors.centerIn: parent
+                            text: sequentialNumber
+                            color: Theme.surfaceText
+                            font.pixelSize: Theme.fontSizeMedium
+                            font.bold: isActive
                 }
 
                 Behavior on width {

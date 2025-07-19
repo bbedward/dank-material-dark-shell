@@ -489,6 +489,15 @@ PanelWindow {
                                 }
                             }
 
+                            SettingsToggle {
+                                text: "Workspace Index Numbers"
+                                description: "Show workspace index numbers in the top bar workspace switcher"
+                                checked: Prefs.showWorkspaceIndex
+                                onToggled: (checked) => {
+                                    return Prefs.setShowWorkspaceIndex(checked);
+                                }
+                            }
+
                         }
 
                     }
